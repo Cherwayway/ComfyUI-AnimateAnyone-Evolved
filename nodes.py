@@ -23,7 +23,7 @@ from .src.models.unet_2d_condition import UNet2DConditionModel
 from .src.models.unet_3d import UNet3DConditionModel
 from .src.models.main_diffuser import AADiffusion
 
-ROOT_PATH = os.path.join(comfy_paths.get_folder_paths("custom_nodes")[0], "./ComfyUI-AnimateAnyone-Evolved")
+ROOT_PATH = "proconfig/widgets/imagen_widgets/library/comfy_custom_nodes/ComfyUI-AnimateAnyone-Evolved"
 DEFAULT_CONFIG_PATH = os.path.join(ROOT_PATH, "./configs/default.yaml")
 CONFIG = OmegaConf.load(DEFAULT_CONFIG_PATH)
 
@@ -191,10 +191,10 @@ class Load_UNet2D_ConditionModel:
     CATEGORY = "AnimateAnyone-Evolved/loaders"
 
     def load_unet2d(self, pretrained_base_unet_folder_path, unet2d_model_path):
-        if not os.path.isabs(pretrained_base_unet_folder_path):
-            pretrained_base_unet_folder_path = os.path.join(ROOT_PATH, pretrained_base_unet_folder_path)
-        if not os.path.isabs(unet2d_model_path):
-            unet2d_model_path = os.path.join(ROOT_PATH, unet2d_model_path)        
+        # if not os.path.isabs(pretrained_base_unet_folder_path):
+        #     pretrained_base_unet_folder_path = os.path.join(ROOT_PATH, pretrained_base_unet_folder_path)
+        # if not os.path.isabs(unet2d_model_path):
+        #     unet2d_model_path = os.path.join(ROOT_PATH, unet2d_model_path)        
         
             
         unet2d = UNet2DConditionModel.from_pretrained(
@@ -229,12 +229,12 @@ class Load_UNet3D_ConditionModel:
     CATEGORY = "AnimateAnyone-Evolved/loaders"
 
     def load_unet3d(self, pretrained_base_unet_folder_path, unet3d_model_path, motion_module_path):
-        if not os.path.isabs(pretrained_base_unet_folder_path):
-            pretrained_base_unet_folder_path = os.path.join(ROOT_PATH, pretrained_base_unet_folder_path)     
-        if not os.path.isabs(unet3d_model_path):
-            unet3d_model_path = os.path.join(ROOT_PATH, unet3d_model_path)
-        if not os.path.isabs(motion_module_path):
-            motion_module_path = os.path.join(ROOT_PATH, motion_module_path)
+        # if not os.path.isabs(pretrained_base_unet_folder_path):
+        #     pretrained_base_unet_folder_path = os.path.join(ROOT_PATH, pretrained_base_unet_folder_path)     
+        # if not os.path.isabs(unet3d_model_path):
+        #     unet3d_model_path = os.path.join(ROOT_PATH, unet3d_model_path)
+        # if not os.path.isabs(motion_module_path):
+        #     motion_module_path = os.path.join(ROOT_PATH, motion_module_path)
            
         unet3d = UNet3DConditionModel.from_pretrained_2d(
             pretrained_base_unet_folder_path,
@@ -269,8 +269,8 @@ class Load_Pose_Guider:
     CATEGORY = "AnimateAnyone-Evolved/loaders"
     
     def load_pose_guider(self, pose_guider_model_path):
-        if not os.path.isabs(pose_guider_model_path):
-            pose_guider_model_path = os.path.join(ROOT_PATH, pose_guider_model_path)
+        # if not os.path.isabs(pose_guider_model_path):
+        #     pose_guider_model_path = os.path.join(ROOT_PATH, pose_guider_model_path)
         
         pose_guider = PoseGuider(320, block_out_channels=(16, 32, 96, 256)).to(
             dtype=WEIGHT_DETYPE, device=DEVICE
